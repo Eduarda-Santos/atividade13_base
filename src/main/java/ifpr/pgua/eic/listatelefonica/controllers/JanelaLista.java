@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.listatelefonica.models.Contato;
-import ifpr.pgua.eic.listatelefonica.models.ListaTelefonica;
+import ifpr.pgua.eic.listatelefonica.models.repositories.ContatoRespository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -23,16 +23,16 @@ public class JanelaLista implements Initializable {
     @FXML
     private TextArea taDetalhes;
 
-    private ListaTelefonica listaTelefonica;
+    private ContatoRespository repositorio;
 
-    public JanelaLista(ListaTelefonica listaTelefonica){
-        this.listaTelefonica = listaTelefonica;
+    public JanelaLista(ContatoRespository repositorio){
+        this.repositorio = repositorio;
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println(listaTelefonica.getContatos());
-        ltvContatos.getItems().addAll(listaTelefonica.getContatos());
+        //System.out.println(listaTelefonica.getContatos());
+        ltvContatos.getItems().addAll(repositorio.listar());
         
     }
 
@@ -58,7 +58,7 @@ public class JanelaLista implements Initializable {
         String inicio = tfBusca.getText();
 
         ltvContatos.getItems().clear();
-        ltvContatos.getItems().addAll(listaTelefonica.buscaPorNome(inicio));
+        ltvContatos.getItems().addAll(repositorio.filtrarPorNome(inicio));
     }
 
     

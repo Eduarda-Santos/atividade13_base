@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import ifpr.pgua.eic.listatelefonica.models.ListaTelefonica;
 import ifpr.pgua.eic.listatelefonica.models.repositories.ContatoRespository;
 import ifpr.pgua.eic.listatelefonica.models.results.Result;
 import ifpr.pgua.eic.listatelefonica.models.results.SuccessResult;
