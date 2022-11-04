@@ -3,7 +3,9 @@ package ifpr.pgua.eic.listatelefonica.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ifpr.pgua.eic.listatelefonica.models.ListaTelefonica;
+import ifpr.pgua.eic.listatelefonica.models.repositories.ContatoRepository;
+import ifpr.pgua.eic.listatelefonica.models.results.Result;
+import ifpr.pgua.eic.listatelefonica.models.results.SuccessResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,10 +25,10 @@ public class JanelaCadastro implements Initializable {
     private TextField tfEmail;
 
 
-    private ListaTelefonica listaTelefonica;
+    private ContatoRepository repositorio;
 
-    public JanelaCadastro(ListaTelefonica listaTelefonica){
-        this.listaTelefonica = listaTelefonica;
+    public JanelaCadastro(ContatoRepository repositorio){
+        this.repositorio = repositorio;
     }
 
     @Override
@@ -40,15 +42,11 @@ public class JanelaCadastro implements Initializable {
         String email = tfEmail.getText();
         String telefone = tfTelefone.getText();
         
-        if(!email.contains("@")){
-            tfEmail.getStyleClass().add("erro-textfield");
-            return;
-        }
+        Result resultado = repositorio.cadastrar(nome, email, telefone);
+        
+        String msg = resultado.getMsg();
 
-        String msg = "Cadstro realizado!";
-        if(!listaTelefonica.adicionarContato(nome, telefone, email)){
-            msg = "Cadastro não realizado!";
-        }else{
+        if(resultado instanceof SuccessResult){
             limpar();
         }
 
