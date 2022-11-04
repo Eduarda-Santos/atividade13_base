@@ -11,11 +11,7 @@ import java.io.IOException;
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaCadastro;
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaLista;
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaPrincipal;
-import ifpr.pgua.eic.listatelefonica.models.FabricaConexoes;
 import ifpr.pgua.eic.listatelefonica.models.ListaTelefonica;
-import ifpr.pgua.eic.listatelefonica.models.daos.ContatoDAO;
-import ifpr.pgua.eic.listatelefonica.models.daos.JDBCContatoDAO;
-import ifpr.pgua.eic.listatelefonica.models.repositories.ContatoRespository;
 import ifpr.pgua.eic.listatelefonica.utils.BaseAppNavigator;
 import ifpr.pgua.eic.listatelefonica.utils.ScreenRegistry;
 import ifpr.pgua.eic.listatelefonica.utils.ScreenRegistryFXML;
@@ -27,19 +23,12 @@ public class App extends BaseAppNavigator {
 
     private ListaTelefonica listaTelefonica;
 
-    private FabricaConexoes fabricaConexoes = FabricaConexoes.getInstance();
-    private ContatoDAO contatoDAO;
-    private ContatoRespository contatoRespository;
-
     @Override
     public void init() throws Exception {
         // TODO Auto-generated method stub
         super.init();
 
         listaTelefonica = new ListaTelefonica();
-
-        contatoDAO = new JDBCContatoDAO(fabricaConexoes);
-        contatoRespository = new ContatoRespository(contatoDAO);
     }
 
     @Override
@@ -55,7 +44,7 @@ public class App extends BaseAppNavigator {
     @Override
     public void registrarTelas() {
         registraTela("PRINCIPAL", new ScreenRegistryFXML(App.class, "fxml/principal.fxml", o->new JanelaPrincipal()));
-        registraTela("CADASTRO", new ScreenRegistryFXML(App.class, "fxml/cadastro.fxml", o->new JanelaCadastro(contatoRespository)));
+        registraTela("CADASTRO", new ScreenRegistryFXML(App.class, "fxml/cadastro.fxml", o->new JanelaCadastro(listaTelefonica)));
         registraTela("LISTA", new ScreenRegistryFXML(App.class, "fxml/listar.fxml", o->new JanelaLista(listaTelefonica)));
         
     }
