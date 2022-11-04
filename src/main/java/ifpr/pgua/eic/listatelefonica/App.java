@@ -1,18 +1,10 @@
 package ifpr.pgua.eic.listatelefonica;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaCadastro;
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaLista;
 import ifpr.pgua.eic.listatelefonica.controllers.JanelaPrincipal;
 import ifpr.pgua.eic.listatelefonica.models.ListaTelefonica;
 import ifpr.pgua.eic.listatelefonica.utils.BaseAppNavigator;
-import ifpr.pgua.eic.listatelefonica.utils.ScreenRegistry;
 import ifpr.pgua.eic.listatelefonica.utils.ScreenRegistryFXML;
 
 /**
